@@ -12,12 +12,13 @@
 class state {
 
     double optimal_policy;
-    std::vector<double> policies;
+
     std::map<char,double> action_reward;
 
 
 
 public:
+    std::vector<double> policies;
     state(double _optimal_policy):optimal_policy(_optimal_policy){  }
 
     double getOptimal_policy() const {
@@ -28,27 +29,61 @@ public:
         return policies;
     }
 
-    std::vector<double>& do_action(std::vector<std::vector<state>> grid,int i,int j,char action,int numIteration ){
+    double do_action(std::vector<std::vector<state>> grid,int i,int j,char action,int numIteration ){
+        bool donothing = false;
+        double val =0;
         std::vector<double> vals;
+
         switch(action){
             case 'R':
-                i=i+1>=grid.size()?i:i+1;
+                if(j==2){
+                    j=j;
+                    donothing = true;
+                }
+                else{
+                    j=j+1;
+                }
                 break;
             case 'L':
-                i=0<i-1?i:i-1;
+               if(j==0){
+                   j=j;
+                   donothing = true;
+               }
+               else{
+                   j=j-1;
+               }
+                break;
             case 'D':
-                if(j)
-                j=0<j-1?j:j-1;
+                if(i==0){
+                    i=i;
+                    donothing=true;
+                } else{
+                    i=i-1;
+                }
+
+                break;
 
             case 'U':
-                j=j+1>=grid[0].size()?j:j+1;
+                if(i==1){
+                    i=i;
+                    donothing=true;
+                } else{
+                    i=i+1;
+
+                }
+
 
 
         }
-vals.push_back(0);
-vals.push_back(grid[i][j].getPolicies()[numIteration-1]);
 
-   return vals; }
+        //std::cout<<"action= "<<action<<" i= "<<i<<" j= "<<j<<std::endl;
+        if(numIteration==0 || donothing){
+            val=0;
+        } else {
+            val=grid[i][j].getPolicies()[numIteration - 1];
+        }
+
+   return val; }
 
 };
 
