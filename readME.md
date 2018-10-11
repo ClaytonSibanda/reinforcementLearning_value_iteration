@@ -12,7 +12,7 @@ Question 2: Assume we start in state s1, give the states that form the
 optimal policy (π∗) to reach the terminal state (s3).
 
 Answer:
-S1,S2,S5,S6,S3
+S1 -> S2 -> S5-> S6-> S3
 
 
 Question 3: Is it possible to change the reward function function so that

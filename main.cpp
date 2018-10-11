@@ -60,12 +60,8 @@
             }
 
         }
-   // cout<<"The max is: "<<max<<endl;
     iteration++;
-//if(iteration==4){
-//
-//    break;
-//}
+
 
 
 if(isStop(grid)){
