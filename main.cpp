@@ -21,6 +21,30 @@ int main() {
 
     }
 
+vector<char> actions={'R','L','U','D'};
+
+    int iteration =0;
+while(true){
+    double policy=0;
+    double max = -100;
+    for(int i=0;i<grid.size();i++){
+        for(int j=0;j<grid[i].size();){
+            for(char action:actions){
+                policy= 0+discount_factor*(grid[i][j].do_action(grid,i,j,action,iteration)[1]);
+                if(policy>max){
+                    max=policy;
+
+                }
+            }
+            vector<double> temp = grid[i][j].getPolicies();
+           temp.push_back(max);
+        }
+
+    }
+
+iteration++;
+
+}
 
     return 0;
 }
